@@ -26,8 +26,7 @@ public class PolicyDemo
       Scanner filedata = new Scanner(file);
    
       while (filedata.hasNext()) {
-         //prompt the user to enter information about the Policy   
-         policyNumber = filedata.nextLine();
+         policyNumber = filedata.nextLine(); //adds a ? at the start? I have no clue why and it seems to only happen to first loop
          //System.out.println(policyNumber);
          
          providerName = filedata.nextLine();
