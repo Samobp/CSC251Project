@@ -2,21 +2,19 @@
 State Farm
 Alice
 Jones
-20
+21
 smoker
 65
 110
-
 
 3455
 Aetna
 Bob
 Lee
-54
+55
 non-smoker
 72
 200
-
 
 2450
 Met Life
@@ -27,7 +25,6 @@ smoker
 71
 300
 
-
 3670
 Global
 Cindy
@@ -37,7 +34,6 @@ non-smoker
 62
 140
 
-
 1490
 Reliable
 Jenna
@@ -46,7 +42,6 @@ Lewis
 smoker
 60
 105
-
 
 3477
 State Farm

@@ -39,16 +39,18 @@ public class PolicyDemo
          //System.out.println(lastName);
          
          age = filedata.nextInt();
+         filedata.nextLine(); // clear the line after the int
          //System.out.println(age);
          
          //it seems to break here where it seem to can't read the data type?
          //Exception in thread "main" java.util.InputMismatchException 
          //I have it to print out the variables once they get assigned but it doesn't seem to help
          smokingStatus = filedata.nextLine();
-         
-         if (smokingStatus == "smoker") {
+
+ 
+         if (smokingStatus.equalsIgnoreCase("smoker")) {
             smokers += 1;
-         } else if (smokingStatus == "non-smoker") {
+         } else {
             nonsmokers += 1;
          }
          
@@ -61,8 +63,10 @@ public class PolicyDemo
          //System.out.println(weight);
          
          //skip blanks
-         blank1 = filedata.nextLine();
-         blank2 = filedata.nextLine();
+         if(filedata.hasNext())
+            blank1 = filedata.nextLine();
+         if(filedata.hasNext())
+            blank2 = filedata.nextLine();
          
          //create a Policy object
          Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
@@ -83,5 +87,9 @@ public class PolicyDemo
          System.out.printf("Policy Price: $%.2f\n", policy.getPrice());
       }
       filedata.close();
+
+      System.out.println("The number of policies with a smoker is: " + smokers);
+      System.out.println("The number of policies with a non-smoker is: " + nonsmokers );
+
    }
 }
