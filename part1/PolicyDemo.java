@@ -1,75 +1,58 @@
 import java.util.Scanner;
-import java.io.*;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 
-public class PolicyDemo 
-{   
+public class PolicyDemo
+{
    public static void main(String[] args) throws IOException
    {
-      //open file
-      File file = new File("PolicyInformation.txt");
-      
-      
       //declare variables
       String policyNumber;
       String providerName;
       String firstName;
       String lastName;
       int age;
-      int smokers = 0;
-      int nonsmokers = 0;
       String smokingStatus;
-      double height = 0;
-      double weight = 0;
-      String blank1;
-      String blank2;
+      double height;
+      double weight;
+      int numSmokers = 0;
       
-      Scanner filedata = new Scanner(file);
-   
-      while (filedata.hasNext()) {
-         policyNumber = filedata.nextLine(); //adds a ? at the start? I have no clue why and it seems to only happen to first loop
-         //System.out.println(policyNumber);
+      //ArrayList to store Policy objects
+      ArrayList<Policy> policyList = new ArrayList<Policy>();
+      
+      //create and open the file
+      File file = new File("PolicyInformation.txt");
+      Scanner inputFile = new Scanner(file);
+      
+      //process all information in the file
+      while(inputFile.hasNext())
+      {
+      
+         policyNumber = inputFile.nextLine();
+         providerName = inputFile.nextLine();
+         firstName = inputFile.nextLine();
+         lastName = inputFile.nextLine();
+         age = inputFile.nextInt();
+         inputFile.nextLine();
+         smokingStatus = inputFile.nextLine();
+         height = inputFile.nextDouble();
+         weight = inputFile.nextDouble();
          
-         providerName = filedata.nextLine();
-         //System.out.println(providerName);
-         
-         firstName = filedata.nextLine();
-         //System.out.println(firstName);
-         
-         lastName = filedata.nextLine();
-         //System.out.println(lastName);
-         
-         age = filedata.nextInt();
-         //System.out.println(age);
-         
-         //it seems to break here where it seem to can't read the data type?
-         //Exception in thread "main" java.util.InputMismatchException 
-         //I have it to print out the variables once they get assigned but it doesn't seem to help
-         smokingStatus = filedata.nextLine();
-         
-         if (smokingStatus == "smoker") {
-            smokers += 1;
-         } else if (smokingStatus == "non-smoker") {
-            nonsmokers += 1;
-         }
-         
-         //System.out.println(smokingStatus);
-         
-         height = filedata.nextDouble();
-         //System.out.println(height);
-         
-         weight = filedata.nextDouble();
-         //System.out.println(weight);
-         
-         //skip blanks
-         blank1 = filedata.nextLine();
-         blank2 = filedata.nextLine();
-         
-         //create a Policy object
-         Policy policy = new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
-         
-         //put a blank line before the output
-         System.out.println();
-         
+         //make sure we haven't hit the end of the file before trying to skip the blank line
+         if(inputFile.hasNext())
+            inputFile.nextLine();
+         if(inputFile.hasNext())
+            inputFile.nextLine();
+            
+         //create a Policy object and add it to our ArrayList
+         policyList.add(new Policy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight));
+      
+      }
+      
+      //print out information about each Policy object
+      for(Policy policy : policyList)
+      { 
          //display information about the Policy
          System.out.println("Policy Number: " + policy.getPolicyNumber());
          System.out.println("Provider Name: " + policy.getProviderName());
@@ -81,7 +64,14 @@ public class PolicyDemo
          System.out.println("Policyholder's Weight: " + policy.getWeight() + " pounds");
          System.out.printf("Policyholder's BMI: %.2f\n", policy.getBMI());
          System.out.printf("Policy Price: $%.2f\n", policy.getPrice());
+         System.out.println();
+         
+         if(policy.getSmokingStatus().equalsIgnoreCase("smoker"))//keep track of the number of smokers
+            numSmokers++;
       }
-      filedata.close();
+      
+      //print out the number of smokers and non-smokers
+      System.out.println("The number of policies with a smoker is: " + numSmokers);
+      System.out.println("The number of policies with a non-smoker is: " + (policyList.size() - numSmokers) );
    }
 }

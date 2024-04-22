@@ -2,125 +2,120 @@ public class Policy
 {  //fields
    private String policyNumber;
    private String providerName;
-   private String firstName;
-   private String lastName;
+   private String FirstName;
+   private String LastName;
    private int age;
    private String smokingStatus;
    private double height;
    private double weight;
 
-   //constructors
+   /**
+   No-arg constructor that explicitly initializes all fields
+   */
    public Policy()
    {
       policyNumber = "";
       providerName = "";
-      firstName = "";
-      lastName = "";
+      FirstName = "";
+      LastName = "";
       age = 0;
       smokingStatus = "";
       height = 0;
       weight = 0;
    }
-   
+
    public Policy(String pNumber, String pName, String fName, String lName,int a, String sStatus, double h, double w)
    {
       policyNumber = pNumber;
       providerName = pName;
-      firstName = fName;
-      lastName = lName;
+      FirstName = fName;
+      LastName = lName;
       age = a;
       smokingStatus = sStatus;
       height = h;
       weight = w;
    }
-   
-   //setters//
+
+   public String getPolicyNumber()
+   {
+      return policyNumber;
+   }
+
+   public String getProviderName()
+   {
+      return providerName;
+   }
+
+   public String getFirstName()
+   {
+      return FirstName;
+   }
+
+   public String getLastName()
+   {
+      return LastName;
+   }
+
+   public int getAge()
+   {
+      return age;
+   }
+
+   public String getSmokingStatus()
+   {
+      return smokingStatus;
+   }
+
+   public double getHeight()
+   {
+      return height;
+   }
+
+   public double getWeight()
+   {
+      return weight;
+   }
 
    public void setPolicyNumber(String pNumber)
    {
       policyNumber = pNumber;
    }
-   
+
    public void setProviderName(String pName)
    {
       providerName = pName;
    }
-   
+
    public void setFirstName(String fName)
    {
-      firstName = fName;
+      FirstName = fName;
    }
-   
+
    public void setLastName(String lName)
    {
-      lastName = lName;
+      LastName = lName;
    }
-   
+
    public void setAge(int a)
    {
       age = a;
    }
-   
+
    public void setSmokingStatus(String sStatus)
    {
       smokingStatus = sStatus;
    }
-   
+
    public void setHeight(double h)
    {
       height = h;
    }
-   
+
    public void setWeight(double w)
    {
       weight = w;
    }
 
-   
-   //getters//
-   
-   public String getPolicyNumber()
-   {
-      return policyNumber;
-   }
-   
-   public String getProviderName()
-   {
-      return providerName;
-   }
-   
-   public String getFirstName()
-   {
-      return firstName;
-   }
-   
-   public String getLastName()
-   {
-      return lastName;
-   }
-   
-   public int getAge()
-   {
-      return age;
-   }
-   
-   public String getSmokingStatus()
-   {
-      return smokingStatus;
-   }
-   
-   public double getHeight()
-   {
-      return height;
-   }
-   
-   public double getWeight()
-   {
-      return weight;
-   }
-   
-      
-   //Calculates the Policyholder's BMI
    public double getBMI()
    {
       final double CONVFACTOR = 703;
@@ -128,7 +123,6 @@ public class Policy
       return (weight * CONVFACTOR) / (height * height);
    }
    
-   //Calculates the Policy's price
    public double getPrice()
    {
       final double BASE_PRICE = 600;
@@ -141,15 +135,14 @@ public class Policy
       
       double price = BASE_PRICE;
       
-      if(age > AGE_THRESHOLD) //over 50 years
-         price += ADDITIONAL_FEE_AGE; //75
+      if(age > AGE_THRESHOLD)
+         price += ADDITIONAL_FEE_AGE;
          
-      if(smokingStatus.equalsIgnoreCase("smoker")) 
-         price += ADDITIONAL_FEE_SMOKING; //100
-            
-      //call the getBMI method
-      if(getBMI() > BMI_THRESHOLD) //BMI over 35
-         price += ((getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI); //additional BMI fee - 20
+      if(smokingStatus.equalsIgnoreCase("smoker"))
+         price += ADDITIONAL_FEE_SMOKING;
+      
+      if(getBMI() > BMI_THRESHOLD)
+         price += ((getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
          
       return price;
    }

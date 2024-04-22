@@ -1,4 +1,4 @@
-﻿3450
+3450
 State Farm
 Alice
 Jones
@@ -6,7 +6,6 @@ Jones
 smoker
 65
 110
-
 
 3455
 Aetna
@@ -17,7 +16,6 @@ non-smoker
 72
 200
 
-
 2450
 Met Life
 Chester
@@ -26,7 +24,6 @@ Williams
 smoker
 71
 300
-
 
 3670
 Global
@@ -37,7 +34,6 @@ non-smoker
 62
 140
 
-
 1490
 Reliable
 Jenna
@@ -46,7 +42,6 @@ Lewis
 smoker
 60
 105
-
 
 3477
 State Farm
